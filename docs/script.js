@@ -18,6 +18,8 @@ const rainDrops = [];
 
 let numMovies = 0;
 
+let option = 1;
+
 for (let i = 0; i < columns; i++){
     rainDrops[i] = 1;
 }
@@ -256,12 +258,17 @@ function back(){
     } else {
         document.getElementById(`secondPage`).style.display = "none";
         document.getElementById(`recommendations`).style.display = "none";
-        document.getElementById('options').style.display = "flex";
+        if (option == 1){
+            document.getElementById('options').style.display = "flex";
+        } else {
+            document.getElementById('options2').style.display = "flex";
+
+        }
         document.querySelectorAll(`.navButton`).forEach(function(element) {
             element.style.display = "block";
         })
         document.getElementById(`recButton`).style.display = "None";
-        document.getElementById(`recButton`).textContent = "Show similar films";        
+        document.getElementById(`recButton`).textContent = "Show similar films";
     }
     document.getElementById(`title`).style.fontSize = 1.7 + "rem";
 }
@@ -337,12 +344,14 @@ async function fetchOrderNumber(){
 
 async function changeOptions(){
     if (numMovies > 5){
-        if (document.getElementById(`options`).style.display == "none"){
+        if (option == 2){
             document.getElementById(`options`).style.display = "flex";
             document.getElementById(`options2`).style.display = "none";
+            option = 1;
         } else {
             document.getElementById(`options`).style.display = "none";
             document.getElementById(`options2`).style.display = "flex";
+            option = 2;
         }
     }
 }
