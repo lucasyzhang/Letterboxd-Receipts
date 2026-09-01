@@ -87,7 +87,7 @@ async function fetchMovies() {
         noUsername(); //implement later
         return;
     }
-    const rssfeed = await fetch(`https://corsproxy.io/?${encodeURIComponent(`https://letterboxd.com/${username}/rss/?random=${Math.trunc(Math.random()*50)}`)}`);
+    const rssfeed = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(`https://letterboxd.com/${username}/rss/?random=${Math.trunc(Math.random()*50)}`)}`);
     const text = await rssfeed.text(); //converts data to text
 
     const parser = new DOMParser();
@@ -205,7 +205,7 @@ async function fetchMovies() {
     document.getElementById(`page`).style.display = "block";
     document.getElementById(`options`).style.display = "flex";
     document.getElementById(`options2`).style.display = "none";
-    //setInterval(digitalRain, 30);
+    setInterval(digitalRain, 30);
 }
 //called by one of the options buttons
 async function printReceipt(id){
@@ -334,9 +334,9 @@ async function getRuntime(mediaType, id){
     return Math.trunc(minutes/60) + "hr " + (minutes%60) + "min";
 }
 async function fetchOrderNumber(){
-    const res = await fetch("https://new-piranha-128179.upstash.io/incr/receipt-counter", {
+    /*const res = await fetch("https://new-piranha-128179.upstash.io/incr/receipt-counter", {
         headers: {Authorization: "Bearer gwAAAAAAAfSzAAIMQHAxcmVjZWlwdC11c2VyDSYoIw7ypTkOrG5ZBtrNsZhwYgWT63mT6DJqaC9W2zJKsO04diE2jTkCwp1TGCP64rh5rQoyj9_iSSQMgJbA3w"}
-    });
+    });*/
     //const data = await res.json();
     //const orderNum = data.result;
     //document.getElementById(`number`).textContent = `#${String(orderNum).padStart(4, '0')}`;
